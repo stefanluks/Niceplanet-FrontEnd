@@ -1,0 +1,189 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+
+.navbar{
+    width: 100%;
+    height: 50px;
+    box-shadow: 0 0 10px gray;
+    background-color: white;
+    color: gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo{
+    width: max-content;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.navbar .logo:hover{
+    color: blue;
+}
+
+.navbar .menu{
+    margin-right: 30px;
+    list-style: none;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .item-menu{
+    color: gray;
+    cursor: pointer;
+}
+.navbar .item-menu.selecionado{
+    color: blue;
+    cursor: pointer;
+}
+
+.navbar .item-menu:hover{
+    color: blue;
+}
+
+/* Tabela de Informações */
+
+.TabelaInfo{
+    width: 90%;
+    border-collapse: collapse;
+    border: 1px solid gray;
+}
+
+.TabelaInfo .cabecalho{
+    border: none;
+    background-color: rgb(63, 63, 182);
+    color: white;
+    height: max-content;
+}
+
+.TabelaInfo .cabecalho td{
+    padding: 15px 10px;
+    border: 1px solid gray;
+}
+
+.TabelaInfo .corpo-tabela tr{
+    cursor: pointer;
+}
+
+.TabelaInfo .corpo-tabela tr:hover{
+    background-color: lightblue;
+}
+
+.TabelaInfo .corpo-tabela td{
+    padding: 5px 10px;
+    border: 1px solid gray;
+}
+
+/* Card de mais informações */
+
+.MaisInfo{
+    width: 90%;
+    min-height: 300px;
+    height: max-content;
+    border: 1px solid gray;
+    margin: 20px 0px;
+    border-radius: 10px;
+}
+
+.MaisInfo .header{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    background-color: rgb(63, 63, 182);
+    border-radius: 10px 10px 0px 0px;
+    color: white;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid gray;
+}
+
+.MaisInfo .corpo-info{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.MaisInfo .corpo-info .infos{
+    width: 40%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.MaisInfo .corpo-info .infos .propriedade-info{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.MaisInfo .corpo-info .infos .id-propriedade{
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background-color: rgb(63, 63, 182);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.MaisInfo .corpo-info .infos .id-propriedade::after{
+    content: 'id';
+    display: block;
+    background-color: red;
+    width: 20px;
+    height: 20px;
+    font-size: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top:-2px;
+    left: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MaisInfo .corpo-info .parecer{
+    width: 60%;
+    text-align: justify;
+}
+
+.linha{
+    width: 90%;
+    height: 1px;
+    background-color: gray;
+    margin: 15px 0px;
+}
+
+.btn-comprar{
+    width: 90%;
+    height: 50px;
+    background-color: lightcoral;
+    color: black;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.btn-comprar.Liberado{
+    background-color: lightgreen;
+}
+
+.btn-comprar.Bloqueado{
+    background-color: lightcoral;
+}
