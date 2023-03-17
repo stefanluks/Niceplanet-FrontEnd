@@ -10,9 +10,9 @@ export default class Navbar extends React.Component{
     render(){
         return (
             <nav className="navbar">
-                <div className="logo">{this.props.nome}</div>
+                <a href="/" className="logo"><img src="./logo.png" width={150} alt="logo"/></a>
                 <ul className="menu">
-                    <div>menu</div>
+                    <img src="./icon.png" width={35} alt="logo"/>
                 </ul>
             </nav>
         )

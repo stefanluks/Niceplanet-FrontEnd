@@ -9,10 +9,12 @@ export default class MaisInfo extends React.Component{
             monitoramentos: [],
             produtores: [],
             vinculo: [],
+            monitoramento: null,
         };
     }
 
     componentDidMount(){
+        this.setState({monitoramento: this.props.monitoramento});
         this.setState({propriedades: this.props.dados.propriedades});
         this.setState({monitoramentos: this.props.dados.monitoramentos});
         this.setState({vinculo: this.props.dados.vinculo});
@@ -44,7 +46,7 @@ export default class MaisInfo extends React.Component{
     render(){
         return (<>
             <div className="MaisInfo">
-                <div className="header">
+                <div className={this.props.monitoramento.comercializado ? "header comercializado":"header"}>
                     <p>{this.props.monitoramento.dataMonitoramento}</p>
                     <p>{this.props.monitoramento.analista}</p>
                     <p>{this.props.monitoramento.resultado}</p>
@@ -70,7 +72,11 @@ export default class MaisInfo extends React.Component{
                             </>
                             ):("---")}
                         <div className="linha"></div>
-                        <button className={"btn-comprar "+this.props.monitoramento.resultado}>Comprar</button>
+                        <button
+                            onClick={() => {if(this.props.monitoramento.resultado === "Liberado") this.props.btnComprarClick()}}
+                            className={"btn-comprar "+this.props.monitoramento.resultado}>
+                            Comprar
+                        </button>
                     </div>
                     <div className="parecer">
                         <h2>Parecer Analise</h2>

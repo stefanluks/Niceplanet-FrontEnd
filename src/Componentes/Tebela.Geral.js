@@ -46,22 +46,26 @@ export default class TabelaGeral extends React.Component{
             <table className="TabelaInfo">
                 <thead className="cabecalho">
                     <tr>
-                        <td>Nome da Propriedade</td>
+                        <td className="cantoEsquerdo">Nome da Propriedade</td>
                         <td>Número de cadastro rural</td>
                         <td>Nome do Produtor</td>
                         <td>CPF do produtor</td>
                         <td>Data do Monitoramento</td>
                         <td>Analista</td>
-                        <td>Resultado</td>
+                        <td className="cantoDireito">Resultado</td>
                     </tr>
                 </thead>
                 <tbody className="corpo-tabela">
                     {
                         this.props.dados ?
                         (
-                            <>{this.state.monitoramentos.map(monitoramento=>{
+                            <>{
+                                this.state.monitoramentos.map(monitoramento=>{
+                                console.log(monitoramento);
                                 return (
-                                    <tr onClick={() => this.props.clickLinha(monitoramento.idMonitoramento)}>
+                                    <tr
+                                        className={monitoramento.comercializado ? "comercilazado":"normal"}
+                                        onClick={() => this.props.clickLinha(monitoramento.idMonitoramento)}>
                                         <td>{this.getPropriedade(monitoramento.idVinculo) ? (
                                             this.getPropriedade(monitoramento.idVinculo).nomePropriedade
                                             ):("---")}</td>
@@ -81,7 +85,11 @@ export default class TabelaGeral extends React.Component{
                                         <td>{monitoramento.resultado}</td>
                                     </tr>
                                 )
-                            })}</>
+                            })}
+                            <tr className="rodape">
+                                <td colSpan={7}>Monitoramentos</td>
+                            </tr>
+                            </>
                         ):(
                             <tr>
                                 <td>Dados não encontrados!</td>

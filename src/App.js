@@ -10,6 +10,7 @@ class App extends React.Component {
     this.state = {
       dados: null,
       selecionado: null,
+      tela: "home",
     }
   }
 
@@ -22,12 +23,28 @@ class App extends React.Component {
         lista[chave] = [];
         Object.keys(data[chave]).forEach((key)=>{lista[chave].push(data[chave][key]);})
       })
+      lista.monitoramentos.forEach(m=>{m["comercializado"]=false;});
+      console.log(lista);
       this.setState({dados: lista});
     })
   }
 
+  Comercializar(){
+    let selecionado = this.state.selecionado;
+    selecionado.comercializado = true;
+    this.setState({selecionado: selecionado})
+    let lista = this.state.dados.monitoramentos;
+    lista[lista.indexOf(this.state.selecionado)] = selecionado;
+    this.setState({monitoramentos: lista})
+  }
+
   SelecionarMonitoramento(id){
     this.setState({selecionado: this.state.dados.monitoramentos[id-1]});
+    this.setState({tela: "monitoramento"});
+  }
+
+  VoltarInicio(){
+    this.setState({tela: "home"});
   }
 
   render(){
@@ -35,21 +52,23 @@ class App extends React.Component {
       <div className="App">
         <Navbar nome="Niceplanet" tela={this.state.tela} mudarTela={this.MudarTela} />
         <div className='corpo-app'>
-          {this.state.dados ? (
-              <TabelaGeral dados={this.state.dados} clickLinha={this.SelecionarMonitoramento.bind(this)} />
-            ):(
-              <div className='carregamento'></div>
+        {
+          this.state.tela === "home" ? (
+            <>
+                {this.state.dados ? (
+                    <>
+                      <h2 className='tituloTela'>Monitoramentos</h2>
+                      <TabelaGeral dados={this.state.dados} clickLinha={this.SelecionarMonitoramento.bind(this)} />
+                    </>
+                  ):(
+                    <div className='carregamento'></div>
+                )}
+            </>):(
+              <>
+                <h2 className='tituloTela'><div className='btnVoltar' onClick={()=>this.VoltarInicio()}></div>Relatório de monitoramento</h2>
+                <MaisInfo monitoramento={this.state.selecionado} dados={this.state.dados} btnComprarClick={()=>this.Comercializar()}/>
+              </>
           )}
-          <>
-          {
-            this.state.selecionado ?
-            (
-              <MaisInfo monitoramento={this.state.selecionado} dados={this.state.dados} />
-            ):(
-              <></>
-            )
-          }
-          </>
         </div>
       </div>
     );

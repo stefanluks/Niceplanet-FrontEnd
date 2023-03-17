@@ -3,13 +3,19 @@
     padding: 0;
 }
 
+body{
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(gray, lightblue)
+}
+
 /* NAVBAR */
 
 .navbar{
     width: 100%;
     height: 50px;
-    box-shadow: 0 0 10px gray;
-    background-color: white;
+    box-shadow: 0 0 10px rgb(121, 184, 121);
+    background: linear-gradient(rgb(70, 70, 172), rgb(79, 119, 79));
     color: gray;
     display: flex;
     align-items: center;
@@ -17,9 +23,10 @@
 }
 
 .navbar .logo{
-    width: max-content;
     margin-left: 30px;
     cursor: pointer;
+    text-decoration: none;
+    color: gray;
 }
 
 .navbar .logo:hover{
@@ -32,7 +39,7 @@
     width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .navbar .item-menu{
@@ -48,12 +55,65 @@
     color: blue;
 }
 
+.tituloTela{
+    width: 90%;
+    color: white;
+    height: max-content;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.btnVoltar{
+    width: 35px;
+    height: 35px;
+    margin: 0px 10px;
+    border-radius: 50%;
+    background-color: rgb(63, 63, 182);
+    position: relative;
+    cursor: pointer;
+    transition: 0.8s;
+}
+
+.btnVoltar:hover{
+    box-shadow: 0 0 20px gray;
+}
+
+.btnVoltar::after{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: white;
+}
+
+
+.btnVoltar::before{
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(0%, -50%);
+    content: '';
+    display: block;
+    width: 0; 
+    height: 0; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right:10px solid white;
+    background-color: transparent;
+}
+
 /* Tabela de Informações */
 
 .TabelaInfo{
     width: 90%;
     border-collapse: collapse;
-    border: 1px solid gray;
+    margin-top: 20px; 
 }
 
 .TabelaInfo .cabecalho{
@@ -61,15 +121,24 @@
     background-color: rgb(63, 63, 182);
     color: white;
     height: max-content;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.cantoEsquerdo{
+    border-radius: 20px 0px 0px 0px;
+}
+
+.cantoDireito{
+    border-radius: 0px 20px 0px 0px;
 }
 
 .TabelaInfo .cabecalho td{
     padding: 15px 10px;
-    border: 1px solid gray;
 }
 
 .TabelaInfo .corpo-tabela tr{
     cursor: pointer;
+    background-color: white;
 }
 
 .TabelaInfo .corpo-tabela tr:hover{
@@ -81,12 +150,52 @@
     border: 1px solid gray;
 }
 
+.TabelaInfo .corpo-tabela .comercilazado{
+    background-color: lightgreen !important;
+}
+
+.corpo-tabela .rodape{
+    background-color: rgb(63, 63, 182) !important;
+    color: white;
+    position: relative;
+    transition: .5s;
+}
+
+.corpo-tabela .rodape::after{
+    content: '';
+    display: block;
+    color: white;
+    background-color: transparent;
+    width: max-content;
+    height: 100%;
+    position: absolute;
+    top: 25%;
+    left: 30px;
+}
+
+.corpo-tabela .rodape td{
+    border: none;
+    text-align: end;
+    padding: 10px 20px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+.TabelaInfo .corpo-tabela .comercilazado:hover ~ .rodape{
+    background-color: lightgreen !important;
+    color: black;
+}
+.TabelaInfo .corpo-tabela .comercilazado:hover ~ .rodape::after{
+    content: 'Compra sinalizada!';
+    color: black;
+}
+
 /* Card de mais informações */
 
 .MaisInfo{
     width: 90%;
     min-height: 300px;
     height: max-content;
+    background-color: white;
     border: 1px solid gray;
     margin: 20px 0px;
     border-radius: 10px;
@@ -102,6 +211,11 @@
     align-items: center;
     justify-content: space-around;
     border-bottom: 1px solid gray;
+}
+
+.header.comercializado{
+    background-color: lightgreen;
+    color: black;
 }
 
 .MaisInfo .corpo-info{
@@ -182,8 +296,10 @@
 
 .btn-comprar.Liberado{
     background-color: lightgreen;
+    cursor: pointer;
 }
 
 .btn-comprar.Bloqueado{
     background-color: lightcoral;
+    cursor: no-drop;
 }
