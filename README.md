@@ -28,3 +28,24 @@ Que pode ser testado no navegador no endereço: [http://localhost:3000](http://l
 
 A página recarrega a cada alteração nos arquivos.\
 E os erros podem serem visualizados no console.
+
+<br>
+
+# Componentes da Aplicação 
+> ## Componentes criados: Nabvar, Tabela.Geral e MaisInfo
+
+<br>
+
+> ### `Navbar` <br> 1º nome: "Nome da empresa"
+
+<br>
+
+> ### `Tabela.Geral` <br> 1º dados: "Recebe os dados dos monitoramentos" <br> 2º clickLinha: "Função que será executada ao clicar em uma Linha/Monitoramento".
+
+<br>
+
+> ### `MaisInfo` <br> 1º monitoramento: "Monitoramento selecionado pelo usuário" <br> 2º dados: "Recebe os dados dos monitoramentos" <br> 3º btnComprarClick: "Função que será executada ao clicar em uma Linha/Monitoramento".
+
+
+
+

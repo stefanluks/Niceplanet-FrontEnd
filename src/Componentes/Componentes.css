@@ -46,6 +46,7 @@ body{
     color: gray;
     cursor: pointer;
 }
+
 .navbar .item-menu.selecionado{
     color: blue;
     cursor: pointer;
@@ -107,6 +108,7 @@ body{
     border-right:10px solid white;
     background-color: transparent;
 }
+
 
 /* Tabela de Informações */
 
@@ -184,10 +186,12 @@ body{
     background-color: lightgreen !important;
     color: black;
 }
+
 .TabelaInfo .corpo-tabela .comercilazado:hover ~ .rodape::after{
     content: 'Compra sinalizada!';
     color: black;
 }
+
 
 /* Card de mais informações */
 

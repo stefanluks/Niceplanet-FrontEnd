@@ -1,6 +1,6 @@
 import React from "react";
 import "./Componentes.css";
-
+// Componente resposável por exibit todos os monitormentos
 export default class MaisInfo extends React.Component{
     constructor(props){
         super(props);
@@ -13,6 +13,7 @@ export default class MaisInfo extends React.Component{
         };
     }
 
+    // Definido cada lista e seus atributos, passando os valores recebidos de App atráves do 'props'.
     componentDidMount(){
         this.setState({monitoramento: this.props.monitoramento});
         this.setState({propriedades: this.props.dados.propriedades});
@@ -21,11 +22,14 @@ export default class MaisInfo extends React.Component{
         this.setState({produtores: this.props.dados.produtores});
     }
 
+    // Retorna o produtor que possua o mesmo id de vinculo que é recebido como parâmetro.
     getProdutor(idVinculo){
         let Produtor = null;
+        // iteração em todos os vinculos, e ao encontrar um vinvulo com mesmo id do parâmetro
         this.state.vinculo.forEach(vinculo =>{
             if(vinculo.idVinculo === idVinculo){
                 this.state.produtores.forEach(produtor=>{
+                    // Verificação onde o produtor deve ter o mesmo id que o idProdutor do Vinculo, para ser retornado
                     if(vinculo.idProdutor === produtor.idprodutor){
                         Produtor = produtor;
                     }
@@ -35,9 +39,11 @@ export default class MaisInfo extends React.Component{
         return Produtor;
     }
 
+    // Retorna a propiedade que possua o mesmo id que é recebido como parâmetro.
     getPropriedade(id){
         let Propriedade = null;
         this.state.propriedades.forEach(propriedade => {
+            // Verificação onde a propriedade deve ter o mesmo id que parâmentro, para ser retornado
             if(propriedade.idPropriedade === id) Propriedade = propriedade; 
         })
         return Propriedade;
@@ -45,78 +51,68 @@ export default class MaisInfo extends React.Component{
 
     render(){
         return (<>
+            {/* Renderização das informações adicionais */}
             <div className="MaisInfo">
+                {/* classe é alterada se o monitoramento for comercializado alterando a cor*/}
                 <div className={this.props.monitoramento.comercializado ? "header comercializado":"header"}>
+                    {/* informações do monitoramento */}
                     <p>{this.props.monitoramento.dataMonitoramento}</p>
                     <p>{this.props.monitoramento.analista}</p>
                     <p>{this.props.monitoramento.resultado}</p>
                 </div>
                 <div className="corpo-info">
                     <div className="infos">
-                        {this.getPropriedade(this.props.monitoramento.idVinculo) ? (
-                            <>
-                                <div className="propriedade-info">
-                                    <i className="id-propriedade">{this.getPropriedade(this.props.monitoramento.idVinculo).idPropriedade}</i>
-                                    <h3>Propriedade: {this.getPropriedade(this.props.monitoramento.idVinculo).nomePropriedade}</h3>
-                                </div>
-                                <p><b>NCR: </b>{this.getPropriedade(this.props.monitoramento.idVinculo).numeroCadastroRural}</p>
-                                <p><b>Tipo: </b>{this.getPropriedade(this.props.monitoramento.idVinculo).tipoPropriedade}</p>
-                            </>
-                            ):("---")}
-                        <div className="linha"></div>
+                        {
+                            // Se existir uma Propriedade vinculada ao monitoramento renderiza as informações da propriedade.
+                            this.getPropriedade(this.props.monitoramento.idVinculo) ? 
+                            (
+                                <>
+                                    <div className="propriedade-info">
+                                        <i className="id-propriedade">
+                                            {
+                                                this.getPropriedade(this.props.monitoramento.idVinculo).idPropriedade
+                                            }
+                                        </i>
+                                        <h3>
+                                            Propriedade: {this.getPropriedade(this.props.monitoramento.idVinculo).nomePropriedade}
+                                        </h3>
+                                    </div>
+                                    <p><b>NCR: </b>{this.getPropriedade(this.props.monitoramento.idVinculo).numeroCadastroRural}</p>
+                                    <p><b>Tipo: </b>{this.getPropriedade(this.props.monitoramento.idVinculo).tipoPropriedade}</p>
+                                </>
+                            ):(
+                                "---"
+                            )
+                        }
+                        <div className="linha"></div>  {/* separador de informações */}
                         <h3>Produtor</h3>
-                        {this.getProdutor(this.props.monitoramento.idVinculo) ? (
-                            <>
-                                <h3>{this.getProdutor(this.props.monitoramento.idVinculo).nomeProdutor}</h3>
-                                <p><b>CPF: </b>{this.getProdutor(this.props.monitoramento.idVinculo).cpfProdutor}</p>
-                            </>
-                            ):("---")}
-                        <div className="linha"></div>
+                        {
+                            // Se existir uma Produtor vinculado ao monitoramento é exibido o nome do produtor.
+                            this.getProdutor(this.props.monitoramento.idVinculo) ? (
+                                <>
+                                    <h3>{this.getProdutor(this.props.monitoramento.idVinculo).nomeProdutor}</h3>
+                                    <p><b>CPF: </b>{this.getProdutor(this.props.monitoramento.idVinculo).cpfProdutor}</p>
+                                </>
+                            ):(
+                                "---"
+                            )
+                        }
+                        <div className="linha"></div> {/* separador de informações */}
+                        {/* Botão de compra que é ativado quando atributo resultado é igual à "Liberado" */}
                         <button
+                            // se liberado a função passada atráves do props é chamada.
                             onClick={() => {if(this.props.monitoramento.resultado === "Liberado") this.props.btnComprarClick()}}
+                            // Classe do botão alterado através do resultado.
                             className={"btn-comprar "+this.props.monitoramento.resultado}>
                             Comprar
                         </button>
                     </div>
+                    {/* Elemento com que renderiza o parecer analise do monitoramento. */}
                     <div className="parecer">
                         <h2>Parecer Analise</h2>
                         {this.props.monitoramento.parecerAnalise}
                     </div>
                 </div>
-                {/* <tbody className="corpo-tabela">
-                    {
-                        this.props.dados ?
-                        (
-                            <>{this.state.monitoramentos.map(monitoramento=>{
-                                return (
-                                    <tr onClick={() => this.props.clickLinha(monitoramento.idMonitoramento)}>
-                                        <td>{this.getPropriedade(monitoramento.idVinculo) ? (
-                                            this.getPropriedade(monitoramento.idVinculo).nomePropriedade
-                                            ):("---")}</td>
-                                        <td>{this.getPropriedade(monitoramento.idVinculo) ? (
-                                            this.getPropriedade(monitoramento.idVinculo).numeroCadastroRural
-                                            ):("---")}</td>
-                                        <td>{this.getProdutor(monitoramento.idVinculo) ? (
-                                            this.getProdutor(monitoramento.idVinculo).nomeProdutor
-                                            ):("---")}</td>
-                                        <td>{
-                                            this.getProdutor(monitoramento.idVinculo) ? (
-                                                this.getProdutor(monitoramento.idVinculo).cpfProdutor
-                                            ):("---")
-                                            }</td>
-                                        <td>{monitoramento.dataMonitoramento}</td>
-                                        <td>{monitoramento.analista}</td>
-                                        <td>{monitoramento.resultado}</td>
-                                    </tr>
-                                )
-                            })}</>
-                        ):(
-                            <tr>
-                                <td>Dados não encontrados!</td>
-                            </tr>
-                        )
-                    }
-                </tbody> */}
             </div>
         </>);
     }
