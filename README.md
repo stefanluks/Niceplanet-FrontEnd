@@ -31,20 +31,25 @@ E os erros podem serem visualizados no console.
 
 <br>
 
-# Componentes da Aplicação 
-> ## Componentes criados: Nabvar, Tabela.Geral e MaisInfo
+### Documentação da aplicação
+> [Documento Markdown](DOCUMENTACAO.md)
 
 <br>
 
-> ### `Navbar` <br> 1º nome: "Nome da empresa"
+### Componentes da Aplicação 
+> Nabvar, Tabela.Geral e MaisInfo
 
 <br>
 
-> ### `Tabela.Geral` <br> 1º dados: "Recebe os dados dos monitoramentos" <br> 2º clickLinha: "Função que será executada ao clicar em uma Linha/Monitoramento".
+> `Navbar` <br> 1º nome: "Nome da empresa"
 
 <br>
 
-> ### `MaisInfo` <br> 1º monitoramento: "Monitoramento selecionado pelo usuário" <br> 2º dados: "Recebe os dados dos monitoramentos" <br> 3º btnComprarClick: "Função que será executada ao clicar em uma Linha/Monitoramento".
+>  `Tabela.Geral` <br> 1º dados: "Recebe os dados dos monitoramentos" <br> 2º clickLinha: "Função que será executada ao clicar em uma Linha/Monitoramento".
+
+<br>
+
+>  `MaisInfo` <br> 1º monitoramento: "Monitoramento selecionado pelo usuário" <br> 2º dados: "Recebe os dados dos monitoramentos" <br> 3º btnComprarClick: "Função que será executada ao clicar em uma Linha/Monitoramento".
 
 
 
